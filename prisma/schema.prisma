@@ -1,0 +1,378 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PROVISIONING
+  ACTIVE
+  FAILED
+  EXPIRED
+  CANCELLED
+  REFUNDED
+}
+
+enum ServerStatus {
+  OFFLINE
+  STARTING
+  RUNNING
+  STOPPING
+  SUSPENDED
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  EXPIRED
+  FAILED
+}
+
+model User {
+  id               String         @id @default(uuid())
+  email            String         @unique
+  name             String
+  phone            String?
+  passwordHash     String
+  role             Role           @default(USER)
+  mustChangePassword Boolean      @default(false)
+  isSuspended      Boolean        @default(false)
+  twoFactorSecret  String?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  servers          Server[]
+  orders           Order[]
+  sessions         Session[]
+  apiKeys          ApiKey[]
+  activityLogs     ActivityLog[]
+  subUsers         SubUser[]
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  userId       String
+  token        String   @unique
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Node {
+  id           String       @id @default(uuid())
+  name         String
+  code         String       @unique
+  country      String
+  ip           String
+  port         Int          @default(8080)
+  daemonToken  String
+  totalRamMb   Int
+  usedRamMb    Int          @default(0)
+  totalDiskGb  Int
+  usedDiskGb   Int          @default(0)
+  isOnline     Boolean      @default(true)
+  lastHeartbeat DateTime    @default(now())
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  servers      Server[]
+  allocations  Allocation[]
+}
+
+model Allocation {
+  id         String   @id @default(uuid())
+  nodeId     String
+  ip         String
+  port       Int
+  isAssigned Boolean  @default(false)
+  serverId   String?
+  node       Node     @relation(fields: [nodeId], references: [id], onDelete: Cascade)
+  server     Server?  @relation(fields: [serverId], references: [id], onDelete: SetNull)
+
+  @@unique([nodeId, ip, port])
+}
+
+model Egg {
+  id             String         @id
+  name           String
+  category       String
+  dockerImage    String
+  defaultStartup String
+  entryFile      String
+  installScript  String
+  stopCommand    String
+  description    String
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  servers        Server[]
+  eggVariables   EggVariable[]
+}
+
+model EggVariable {
+  id           String   @id @default(uuid())
+  eggId        String
+  key          String
+  label        String
+  defaultValue String
+  isRequired   Boolean  @default(false)
+  description  String?
+  egg          Egg      @relation(fields: [eggId], references: [id], onDelete: Cascade)
+
+  @@unique([eggId, key])
+}
+
+model Server {
+  id               String         @id @default(uuid())
+  uuid             String         @unique @default(uuid())
+  name             String
+  description      String?
+  status           ServerStatus   @default(OFFLINE)
+  userId           String
+  nodeId           String
+  eggId            String
+  orderId          String?        @unique
+  ramMb            Int
+  cpuPercent       Int
+  diskGb           Int
+  backupSlots      Int            @default(1)
+  primaryPort      Int
+  extraPorts       Int[]
+  autoRestart      Boolean        @default(true)
+  crashCount       Int            @default(0)
+  suspended        Boolean        @default(false)
+  startsAt         DateTime       @default(now())
+  expiresAt        DateTime
+  startupCommand   String
+  entryFile        String
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  user             User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  node             Node           @relation(fields: [nodeId], references: [id])
+  egg              Egg            @relation(fields: [eggId], references: [id])
+  order            Order?         @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  serverVariables  ServerVariable[]
+  backups          Backup[]
+  schedules        Schedule[]
+  subUsers         SubUser[]
+  databases        DatabaseInstance[]
+  allocations      Allocation[]
+}
+
+model ServerVariable {
+  id        String   @id @default(uuid())
+  serverId  String
+  key       String
+  value     String
+  server    Server   @relation(fields: [serverId], references: [id], onDelete: Cascade)
+
+  @@unique([serverId, key])
+}
+
+model Backup {
+  id         String   @id @default(uuid())
+  serverId   String
+  name       String
+  sizeBytes  BigInt
+  checksum   String
+  isLocked   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  server     Server   @relation(fields: [serverId], references: [id], onDelete: Cascade)
+}
+
+model Schedule {
+  id         String   @id @default(uuid())
+  serverId   String
+  name       String
+  cronExpr   String
+  actionType String
+  payload    String
+  isActive   Boolean  @default(true)
+  lastRunAt  DateTime?
+  nextRunAt  DateTime?
+  server     Server   @relation(fields: [serverId], references: [id], onDelete: Cascade)
+}
+
+model SubUser {
+  id          String   @id @default(uuid())
+  serverId    String
+  userId      String
+  permissions String[]
+  createdAt   DateTime @default(now())
+  server      Server   @relation(fields: [serverId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([serverId, userId])
+}
+
+model DatabaseInstance {
+  id        String   @id @default(uuid())
+  serverId  String
+  name      String
+  dbType    String   @default("mysql")
+  host      String
+  port      Int
+  username  String
+  password  String
+  createdAt DateTime @default(now())
+  server    Server   @relation(fields: [serverId], references: [id], onDelete: Cascade)
+}
+
+model Order {
+  id               String       @id @default(uuid())
+  orderCode        String       @unique
+  userId           String?
+  customerName     String
+  customerEmail    String
+  customerPhone    String
+  status           OrderStatus  @default(PENDING)
+  specsSnapshot    Json
+  priceSnapshot    Json
+  totalAmount      Int
+  durationMonths   Int          @default(1)
+  startsAt         DateTime?
+  expiresAt        DateTime?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  user             User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
+  server           Server?
+  payments         Payment[]
+  invoices         Invoice[]
+}
+
+model Payment {
+  id             String         @id @default(uuid())
+  orderId        String
+  transactionId  String         @unique
+  amount         Int
+  totalAmount    Int
+  adminFee       Int            @default(0)
+  creditAmount   Int
+  feeBy          String         @default("buyer")
+  qrisMethod     String         @default("qris_one")
+  qrUrl          String
+  paymentUrl     String
+  status         PaymentStatus  @default(PENDING)
+  isTest         Boolean        @default(false)
+  expiredAt      DateTime
+  paidAt         DateTime?
+  lastCheckedAt  DateTime?
+  rawResponse    Json?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  order          Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+model PaymentWebhookLog {
+  id             String   @id @default(uuid())
+  event          String
+  transactionId  String
+  payload        Json
+  signatureValid Boolean
+  processedAt    DateTime @default(now())
+
+  @@unique([event, transactionId])
+}
+
+model Invoice {
+  id          String   @id @default(uuid())
+  orderId     String
+  invoiceNum  String   @unique
+  amount      Int
+  status      String
+  issuedAt    DateTime @default(now())
+  paidAt      DateTime?
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+model Plan {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  description String
+  ramMb       Int
+  cpuPercent  Int
+  diskGb      Int
+  backupSlots Int
+  extraPorts  Int
+  databases   Int
+  isPopular   Boolean  @default(false)
+}
+
+model PricingRule {
+  id                 String   @id @default(uuid())
+  baseMonthlyFee     Int      @default(4000)
+  pricePerGbRam      Int      @default(10000)
+  pricePerCpuCore    Int      @default(8000)
+  pricePerGbDisk     Int      @default(400)
+  pricePerBackupSlot Int      @default(2000)
+  pricePerExtraPort  Int      @default(1500)
+  pricePerDatabase   Int      @default(3000)
+  minAmount          Int      @default(1000)
+  maxAmount          Int      @default(5000000)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Coupon {
+  id             String   @id @default(uuid())
+  code           String   @unique
+  discountPercent Int?
+  discountFixed  Int?
+  maxDiscount    Int?
+  maxUsage       Int      @default(100)
+  usedCount      Int      @default(0)
+  isActive       Boolean  @default(true)
+  expiresAt      DateTime?
+}
+
+model RouterConfig {
+  id           String   @id @default("default")
+  endpoint     String   @default("https://api.9router.com")
+  apiKey       String   @default("")
+  mode         String   @default("auto")
+  isEnabled    Boolean  @default(false)
+  lastSyncAt   DateTime?
+}
+
+model PaymentProviderConfig {
+  id             String   @id @default("buatqris")
+  provider       String   @default("buatqris")
+  accountId      String
+  secretToken    String
+  signingSecret  String
+  mode           String   @default("mock")
+  defaultMethod  String   @default("qris_one")
+  feeBy          String   @default("buyer")
+  minAmount      Int      @default(1000)
+  maxAmount      Int      @default(5000000)
+}
+
+model ActivityLog {
+  id         String   @id @default(uuid())
+  userId     String?
+  serverId   String?
+  action     String
+  details    String
+  ipAddress  String?
+  createdAt  DateTime @default(now())
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
+
+model Setting {
+  key   String @id
+  value String
+}

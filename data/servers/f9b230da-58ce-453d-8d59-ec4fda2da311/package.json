@@ -1,0 +1,35 @@
+{
+   "name": "denia",
+   "version": "0.2.0-beta.19",
+   "description": "A simple WhatsApp bot built on Baileys",
+   "main": "index.js",
+   "type": "module",
+   "scripts": {
+      "start": "NODE_ENV=production MALLOC_ARENA_MAX=2 node --max-old-space-size=256 --expose-gc index.js"
+   },
+   "keywords": [
+      "automation",
+      "base",
+      "baileys",
+      "bot",
+      "js-whatsapp",
+      "multi-device",
+      "whatsapp",
+      "whatsapp-bot"
+   ],
+   "author": "Sairi",
+   "license": "MIT",
+   "dependencies": {
+      "@hapi/boom": "^10.0.1",
+      "@napi-rs/image": "^1.12.0",
+      "@sairidev/baileys-new": "npm:@whiskeysockets/baileys@^6.7.24",
+      "@whiskeysockets/baileys": "^6.7.24",
+      "fflate": "^0.8.3",
+      "file-type": "21.3.4",
+      "lru-cache": "^11.5.3",
+      "p-queue": "^10.0.0",
+      "qrcode": "~1.5.4",
+      "yt-search": "^2.13.1"
+   },
+   "packageManager": "yarn@1.22.22"
+}

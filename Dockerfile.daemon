@@ -1,0 +1,18 @@
+# Production Dockerfile for Daemon Node Agent
+FROM node:20-alpine
+
+WORKDIR /app
+ENV NODE_ENV=production
+
+# Install Docker CLI so daemon can invoke docker tools if necessary
+RUN apk add --no-cache docker-cli git
+
+COPY apps/daemon/package*.json ./
+RUN npm install
+
+COPY apps/daemon ./
+
+RUN npm install -g tsx
+
+EXPOSE 8080
+CMD ["tsx", "index.ts"]

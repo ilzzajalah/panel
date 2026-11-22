@@ -1,0 +1,1160 @@
+{
+  "users": [
+    {
+      "id": "usr-admin-001",
+      "email": "admin@aetherpanel.com",
+      "name": "System Administrator",
+      "phone": "081234567890",
+      "passwordHash": "a7e8792c5cf6072ce278d5bc49432b2ceb5e610ed7888e0e39b17618672a750f",
+      "role": "ADMIN",
+      "mustChangePassword": false,
+      "isSuspended": false,
+      "createdAt": "2026-10-15T16:21:41.449Z"
+    },
+    {
+      "id": "usr-admin-super",
+      "email": "rizramadhan975@gmail.com",
+      "name": "Rizki Ramadhan (Super Admin)",
+      "phone": "081234567899",
+      "passwordHash": "a7e8792c5cf6072ce278d5bc49432b2ceb5e610ed7888e0e39b17618672a750f",
+      "role": "ADMIN",
+      "mustChangePassword": false,
+      "isSuspended": false,
+      "createdAt": "2026-10-15T16:21:41.449Z"
+    },
+    {
+      "id": "usr-demo-002",
+      "email": "user@example.com",
+      "name": "Demo User",
+      "phone": "085712345678",
+      "passwordHash": "446bf037573796a8687b0faae1c3e9cd92af918f3161efadb4fd8760988c8932",
+      "role": "USER",
+      "mustChangePassword": false,
+      "isSuspended": false,
+      "createdAt": "2026-10-15T16:21:41.450Z"
+    },
+    {
+      "id": "usr-88648d000a9c",
+      "email": "testbuyer@example.com",
+      "name": "Test Buyer",
+      "phone": "08123456789",
+      "passwordHash": "3409e5162650c38b4c376ab020f7b7d6a51b09a55def607301768018801b9eb7",
+      "role": "USER",
+      "mustChangePassword": true,
+      "isSuspended": false,
+      "createdAt": "2026-10-15T16:29:01.818Z"
+    }
+  ],
+  "servers": [
+    {
+      "id": "srv-08b8e0df18",
+      "uuid": "f9b230da-58ce-453d-8d59-ec4fda2da311",
+      "orderCode": "ORD-MV9R70S6-E1DF",
+      "name": "Node.js 20 LTS Instance",
+      "description": "Provisioned for Test Buyer (ORD-MV9R70S6-E1DF)",
+      "status": "suspended",
+      "eggId": "nodejs",
+      "nodeId": "node-jkt-01",
+      "ip": "103.147.154.21",
+      "primaryPort": 9399,
+      "extraPorts": [],
+      "allocatedPorts": [
+        9399
+      ],
+      "ramMb": 1024,
+      "cpuPercent": 100,
+      "diskGb": 10,
+      "backupSlots": 1,
+      "databaseCount": 0,
+      "userId": "usr-88648d000a9c",
+      "userEmail": "testbuyer@example.com",
+      "startsAt": "2026-10-15T16:29:01.818Z",
+      "expiresAt": "2026-11-15T16:29:01.818Z",
+      "suspended": true,
+      "autoRestart": true,
+      "crashCount": 0,
+      "startupCommand": "npm start",
+      "entryFile": "index.js",
+      "envVars": {},
+      "createdAt": "2026-10-15T16:29:01.818Z",
+      "updatedAt": "2026-11-19T09:03:44.020Z"
+    },
+    {
+      "id": "srv-unl-edc56281",
+      "uuid": "9ed39ced-fd95-435d-b101-c6fbc73a2a6e",
+      "name": "Enterprise Unlimited Master (Unlimited VIP)",
+      "description": "Unlimited Storage & Memory Provisioned by Admin",
+      "status": "running",
+      "eggId": "nodejs",
+      "nodeId": "node-jkt-01",
+      "ip": "103.147.154.21",
+      "primaryPort": 9276,
+      "extraPorts": [
+        9277,
+        9278
+      ],
+      "allocatedPorts": [
+        9276,
+        9277,
+        9278
+      ],
+      "ramMb": 65536,
+      "cpuPercent": 800,
+      "diskGb": 2000,
+      "backupSlots": 50,
+      "databaseCount": 20,
+      "userId": "usr-admin-super",
+      "userEmail": "rizramadhan975@gmail.com",
+      "startsAt": "2026-10-15T16:58:17.859Z",
+      "expiresAt": "2031-10-14T16:58:17.859Z",
+      "suspended": false,
+      "autoRestart": true,
+      "crashCount": 0,
+      "startupCommand": "npm start",
+      "entryFile": "index.js",
+      "envVars": {
+        "IS_UNLIMITED": "true"
+      },
+      "createdAt": "2026-10-15T16:58:17.859Z",
+      "updatedAt": "2026-11-21T15:50:29.833Z",
+      "desiredState": "running"
+    },
+    {
+      "id": "srv-unl-a05f3fe4",
+      "uuid": "a164ee91-7d5d-49ae-9944-fe3c3ace5ca7",
+      "name": "Unlimited Cloud Master",
+      "description": "Unlimited Storage & Memory Provisioned by Admin",
+      "status": "starting",
+      "eggId": "nodejs",
+      "nodeId": "node-jkt-01",
+      "ip": "103.147.154.21",
+      "primaryPort": 8537,
+      "extraPorts": [
+        8538,
+        8539
+      ],
+      "allocatedPorts": [
+        8537,
+        8538,
+        8539
+      ],
+      "ramMb": 65536,
+      "cpuPercent": 800,
+      "diskGb": 2000,
+      "backupSlots": 50,
+      "databaseCount": 20,
+      "userId": "usr-admin-super",
+      "userEmail": "rizramadhan975@gmail.com",
+      "startsAt": "2026-10-25T12:47:10.385Z",
+      "expiresAt": "2099-12-31T23:59:59.000Z",
+      "suspended": false,
+      "autoRestart": true,
+      "crashCount": 1,
+      "startupCommand": "npm start",
+      "entryFile": "index.js",
+      "envVars": {
+        "IS_UNLIMITED": "true"
+      },
+      "createdAt": "2026-10-25T12:47:10.385Z",
+      "updatedAt": "2026-11-21T15:50:51.901Z",
+      "desiredState": "running"
+    },
+    {
+      "id": "srv-unl-1a825fe2",
+      "uuid": "7d2a1a15-b996-4b4a-9a24-0dcdc4f6beaa",
+      "name": "Unlimited Cloud Master",
+      "description": "Unlimited Storage & Memory Provisioned by Admin",
+      "status": "starting",
+      "eggId": "nodejs",
+      "nodeId": "node-jkt-01",
+      "ip": "103.147.154.21",
+      "primaryPort": 9089,
+      "extraPorts": [
+        9090,
+        9091
+      ],
+      "allocatedPorts": [
+        9089,
+        9090,
+        9091
+      ],
+      "ramMb": 65536,
+      "cpuPercent": 800,
+      "diskGb": 2000,
+      "backupSlots": 50,
+      "databaseCount": 20,
+      "userId": "usr-admin-super",
+      "userEmail": "rizramadhan975@gmail.com",
+      "startsAt": "2026-10-25T12:47:13.969Z",
+      "expiresAt": "2099-12-31T23:59:59.000Z",
+      "suspended": false,
+      "autoRestart": true,
+      "crashCount": 1,
+      "startupCommand": "npm start",
+      "entryFile": "index.js",
+      "envVars": {
+        "IS_UNLIMITED": "true"
+      },
+      "createdAt": "2026-10-25T12:47:13.969Z",
+      "updatedAt": "2026-11-21T15:50:51.905Z",
+      "backupSchedule": {
+        "enabled": true,
+        "frequency": "daily",
+        "hour": 3,
+        "targetHour": 3,
+        "dayOfWeek": 0,
+        "targetDayOfWeek": 0,
+        "maxSlots": 50,
+        "lastRunAt": "2026-11-21T03:00:36.423Z",
+        "nextRunAt": "2026-11-22T03:00:00.000Z"
+      },
+      "desiredState": "running"
+    },
+    {
+      "id": "srv-unl-2829d311",
+      "uuid": "8d334c21-fd50-4d98-b40c-39c905942ccd",
+      "name": "Unlimited Cloud Master",
+      "description": "Unlimited Storage & Memory Provisioned by Admin",
+      "status": "running",
+      "eggId": "nodejs",
+      "nodeId": "node-jkt-01",
+      "ip": "103.147.154.21",
+      "primaryPort": 9948,
+      "extraPorts": [
+        9949,
+        9950
+      ],
+      "allocatedPorts": [
+        9948,
+        9949,
+        9950
+      ],
+      "ramMb": 65536,
+      "cpuPercent": 800,
+      "diskGb": 2000,
+      "backupSlots": 50,
+      "databaseCount": 20,
+      "userId": "usr-admin-super",
+      "userEmail": "rizramadhan975@gmail.com",
+      "startsAt": "2026-10-25T13:44:42.467Z",
+      "expiresAt": "2099-12-31T23:59:59.000Z",
+      "suspended": false,
+      "autoRestart": true,
+      "crashCount": 0,
+      "startupCommand": "npm start",
+      "entryFile": "index.js",
+      "envVars": {
+        "IS_UNLIMITED": "true"
+      },
+      "createdAt": "2026-10-25T13:44:42.467Z",
+      "updatedAt": "2026-11-21T15:50:29.906Z",
+      "desiredState": "running"
+    },
+    {
+      "id": "srv-unl-e1e40b48",
+      "uuid": "1fb57304-0553-4ad7-a375-6e3a87c0cbdd",
+      "name": "Unlimited Cloud Master",
+      "description": "Unlimited Storage & Memory Provisioned by Admin",
+      "status": "starting",
+      "eggId": "nodejs",
+      "nodeId": "node-jkt-01",
+      "ip": "103.147.154.21",
+      "primaryPort": 9027,
+      "extraPorts": [
+        9028,
+        9029
+      ],
+      "allocatedPorts": [
+        9027,
+        9028,
+        9029
+      ],
+      "ramMb": 65536,
+      "cpuPercent": 800,
+      "diskGb": 2000,
+      "backupSlots": 50,
+      "databaseCount": 20,
+      "userId": "usr-admin-super",
+      "userEmail": "rizramadhan975@gmail.com",
+      "startsAt": "2026-10-25T13:53:14.838Z",
+      "expiresAt": "2099-12-31T23:59:59.000Z",
+      "suspended": false,
+      "autoRestart": true,
+      "crashCount": 1,
+      "startupCommand": "npm start",
+      "entryFile": "index.js",
+      "envVars": {
+        "IS_UNLIMITED": "true"
+      },
+      "createdAt": "2026-10-25T13:53:14.838Z",
+      "updatedAt": "2026-11-21T15:50:51.907Z",
+      "desiredState": "running"
+    },
+    {
+      "id": "srv-unl-5ee1b0ea",
+      "uuid": "389549e4-22e6-4a35-844e-2c5e6b559b69",
+      "name": "Unlimited Cloud Master",
+      "description": "Unlimited Storage & Memory Provisioned by Admin",
+      "status": "starting",
+      "eggId": "nodejs",
+      "nodeId": "node-jkt-01",
+      "ip": "103.147.154.21",
+      "primaryPort": 9185,
+      "extraPorts": [
+        9186,
+        9187
+      ],
+      "allocatedPorts": [
+        9185,
+        9186,
+        9187
+      ],
+      "ramMb": 65536,
+      "cpuPercent": 800,
+      "diskGb": 2000,
+      "backupSlots": 50,
+      "databaseCount": 20,
+      "userId": "usr-admin-super",
+      "userEmail": "rizramadhan975@gmail.com",
+      "startsAt": "2026-10-26T11:15:34.621Z",
+      "expiresAt": "2099-12-31T23:59:59.000Z",
+      "suspended": false,
+      "autoRestart": true,
+      "crashCount": 1,
+      "startupCommand": "npm start",
+      "entryFile": "index.js",
+      "envVars": {
+        "IS_UNLIMITED": "true"
+      },
+      "createdAt": "2026-10-26T11:15:34.621Z",
+      "updatedAt": "2026-11-21T15:50:51.910Z",
+      "desiredState": "running"
+    },
+    {
+      "id": "srv-unl-cd00df84",
+      "uuid": "108b835c-7548-4ae5-ae85-b4c0e39c3452",
+      "name": "Unlimited Cloud Master",
+      "description": "Unlimited Storage & Memory Provisioned by Admin",
+      "status": "starting",
+      "eggId": "nodejs",
+      "nodeId": "node-jkt-01",
+      "ip": "103.147.154.21",
+      "primaryPort": 9074,
+      "extraPorts": [
+        9075,
+        9076
+      ],
+      "allocatedPorts": [
+        9074,
+        9075,
+        9076
+      ],
+      "ramMb": 65536,
+      "cpuPercent": 800,
+      "diskGb": 2000,
+      "backupSlots": 50,
+      "databaseCount": 20,
+      "userId": "usr-admin-super",
+      "userEmail": "rizramadhan975@gmail.com",
+      "startsAt": "2026-10-26T11:19:10.564Z",
+      "expiresAt": "2099-12-31T23:59:59.000Z",
+      "suspended": false,
+      "autoRestart": true,
+      "crashCount": 1,
+      "startupCommand": "npm start",
+      "entryFile": "index.js",
+      "envVars": {
+        "IS_UNLIMITED": "true"
+      },
+      "createdAt": "2026-10-26T11:19:10.564Z",
+      "updatedAt": "2026-11-21T15:50:51.913Z",
+      "desiredState": "running"
+    },
+    {
+      "id": "srv-unl-c259247d",
+      "uuid": "36d73702-95f8-43eb-8f08-0d1c3ac5282f",
+      "name": "Unlimited Cloud Master",
+      "description": "Unlimited Storage & Memory Provisioned by Admin",
+      "status": "starting",
+      "eggId": "nodejs",
+      "nodeId": "node-jkt-01",
+      "ip": "103.147.154.21",
+      "primaryPort": 9105,
+      "extraPorts": [
+        9106,
+        9107
+      ],
+      "allocatedPorts": [
+        9105,
+        9106,
+        9107
+      ],
+      "ramMb": 65536,
+      "cpuPercent": 800,
+      "diskGb": 2000,
+      "backupSlots": 50,
+      "databaseCount": 20,
+      "userId": "usr-admin-super",
+      "userEmail": "rizramadhan975@gmail.com",
+      "startsAt": "2026-10-27T10:31:31.173Z",
+      "expiresAt": "2099-12-31T23:59:59.000Z",
+      "suspended": false,
+      "autoRestart": true,
+      "crashCount": 1,
+      "startupCommand": "npm start",
+      "entryFile": "index.js",
+      "envVars": {
+        "IS_UNLIMITED": "true",
+        "NODE_VERSION": "20"
+      },
+      "createdAt": "2026-10-27T10:31:31.173Z",
+      "updatedAt": "2026-11-21T15:50:51.915Z",
+      "nodeVersion": "20",
+      "desiredState": "running"
+    },
+    {
+      "id": "srv-unl-9e6fb34a",
+      "uuid": "2a7727dc-dbea-475d-a77e-7400d02b20cd",
+      "name": "Unlimited Cloud Master",
+      "description": "Unlimited Storage & Memory Provisioned by Admin",
+      "status": "starting",
+      "eggId": "nodejs",
+      "nodeId": "node-jkt-01",
+      "ip": "103.147.154.21",
+      "primaryPort": 8972,
+      "extraPorts": [
+        8973,
+        8974
+      ],
+      "allocatedPorts": [
+        8972,
+        8973,
+        8974
+      ],
+      "ramMb": 65536,
+      "cpuPercent": 800,
+      "diskGb": 2000,
+      "backupSlots": 50,
+      "databaseCount": 20,
+      "userId": "usr-admin-super",
+      "userEmail": "rizramadhan975@gmail.com",
+      "startsAt": "2026-10-27T10:34:24.185Z",
+      "expiresAt": "2099-12-31T23:59:59.000Z",
+      "suspended": false,
+      "autoRestart": true,
+      "crashCount": 1,
+      "startupCommand": "npm start",
+      "entryFile": "index.js",
+      "envVars": {
+        "IS_UNLIMITED": "true"
+      },
+      "createdAt": "2026-10-27T10:34:24.185Z",
+      "updatedAt": "2026-11-21T15:50:51.918Z",
+      "desiredState": "running"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord-97890632ea24",
+      "orderCode": "ORD-MV9R70S6-E1DF",
+      "customerName": "Test Buyer",
+      "customerEmail": "testbuyer@example.com",
+      "customerPhone": "08123456789",
+      "status": "ACTIVE",
+      "specs": {
+        "eggId": "nodejs",
+        "nodeId": "node-jkt-01",
+        "ramMb": 1024,
+        "cpuPercent": 100,
+        "diskGb": 10,
+        "backupSlots": 1,
+        "extraPorts": 0,
+        "databases": 0,
+        "durationMonths": 1
+      },
+      "priceQuote": {
+        "ramPrice": 10000,
+        "cpuPrice": 8000,
+        "diskPrice": 4000,
+        "backupPrice": 2000,
+        "portsPrice": 0,
+        "databasesPrice": 0,
+        "baseMonthly": 4000,
+        "monthlySubtotal": 28000,
+        "durationMonths": 1,
+        "grossTotal": 28000,
+        "discountPercent": 0,
+        "discountAmount": 0,
+        "couponDiscountAmount": 0,
+        "netTotal": 28000,
+        "adminFee": 750,
+        "totalPayable": 28750,
+        "isValid": true
+      },
+      "totalAmount": 28750,
+      "durationMonths": 1,
+      "createdAt": "2026-10-15T16:28:55.350Z",
+      "updatedAt": "2026-10-15T16:29:01.828Z",
+      "userId": "usr-88648d000a9c",
+      "serverId": "srv-08b8e0df18"
+    }
+  ],
+  "payments": [
+    {
+      "id": "pay-32f91fc0c50f",
+      "orderId": "ord-97890632ea24",
+      "orderCode": "ORD-MV9R70S6-E1DF",
+      "transactionId": "TRX-MV9R70S7-5990",
+      "amount": 28000,
+      "totalAmount": 28799,
+      "adminFee": 750,
+      "creditAmount": 28000,
+      "feeBy": "buyer",
+      "qrisMethod": "qris_one",
+      "qrUrl": "data:image/png;base64,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",
+      "paymentUrl": "/checkout/ORD-MV9R70S6-E1DF",
+      "status": "SUCCESS",
+      "isTest": true,
+      "expiredAt": "2026-10-15 16:43:55",
+      "createdAt": "2026-10-15T16:28:55.399Z",
+      "rawResponse": {
+        "transaction_id": "TRX-MV9R70S7-5990",
+        "amount": 28000,
+        "total_amount": 28799,
+        "amount_uniq": 49,
+        "admin_fee": 750,
+        "credit_amount": 28000,
+        "fee_by": "buyer",
+        "qris_method": "qris_one",
+        "description": "Order ORD-MV9R70S6-E1DF (1024MB RAM)",
+        "umkm_name": "Aether Cloud Host",
+        "qr_url": "data:image/png;base64,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",
+        "qris_image": "data:image/png;base64,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",
+        "expired_at": "2026-10-15 16:43:55",
+        "status": "pending",
+        "payment_url": "/checkout/ORD-MV9R70S6-E1DF"
+      },
+      "paidAt": "2026-10-15T16:29:01.816Z"
+    }
+  ],
+  "webhookLogs": [
+    {
+      "event": "payment.success",
+      "transactionId": "TRX-IDEMP-001",
+      "processedAt": "2026-10-15T16:21:41.453Z"
+    },
+    {
+      "event": "payment.success",
+      "transactionId": "TRX-IDEMP-1792081413921",
+      "processedAt": "2026-10-15T16:23:33.921Z"
+    },
+    {
+      "event": "payment.success",
+      "transactionId": "TRX-IDEMP-1792081426366",
+      "processedAt": "2026-10-15T16:23:46.366Z"
+    },
+    {
+      "event": "payment.success",
+      "transactionId": "TRX-IDEMP-1792081468738",
+      "processedAt": "2026-10-15T16:24:28.738Z"
+    },
+    {
+      "event": "payment.success",
+      "transactionId": "TRX-MV9R70S7-5990",
+      "processedAt": "2026-10-15T16:29:01.816Z"
+    }
+  ],
+  "backups": [
+    {
+      "id": "bck-e11032b1d8",
+      "serverId": "srv-unl-1a825fe2",
+      "name": "System_Backup_Verification",
+      "sizeBytes": 22,
+      "checksum": "e3d1d5cbcf4363cc",
+      "createdAt": "2026-10-29T21:54:41.248Z",
+      "filePath": "/app/applet/data/backups/System_Backup_Verification_1793310881243.zip",
+      "isAutomatic": false
+    },
+    {
+      "id": "bck-auto-a459250599",
+      "serverId": "srv-unl-1a825fe2",
+      "name": "AutoBackup-2026-11-20T03-00-09",
+      "sizeBytes": 161,
+      "checksum": "d78dee485983510b",
+      "createdAt": "2026-11-20T03:00:09.085Z",
+      "filePath": "/app/applet/data/backups/AutoBackup-2026-11-20T03-00-09_1795143609002.zip",
+      "isAutomatic": true
+    },
+    {
+      "id": "bck-auto-3099d39236",
+      "serverId": "srv-unl-1a825fe2",
+      "name": "AutoBackup-2026-11-21T03-00-36",
+      "sizeBytes": 161,
+      "checksum": "522910bd017d6e01",
+      "createdAt": "2026-11-21T03:00:36.422Z",
+      "filePath": "/app/applet/data/backups/AutoBackup-2026-11-21T03-00-36_1795230036412.zip",
+      "isAutomatic": true
+    }
+  ],
+  "schedules": [],
+  "databases": [],
+  "subUsers": [],
+  "activityLogs": [
+    {
+      "id": "act-1793097264189-108",
+      "createdAt": "2026-10-27T10:34:24.189Z",
+      "userId": "usr-admin-super",
+      "serverId": "srv-unl-9e6fb34a",
+      "action": "UNLIMITED_SERVER_CREATED",
+      "details": "Admin created unlimited GB server Unlimited Cloud Master for rizramadhan975@gmail.com (Masa Aktif: unlimited)"
+    },
+    {
+      "id": "act-1793097223479-434",
+      "createdAt": "2026-10-27T10:33:43.480Z",
+      "userId": "usr-admin-super",
+      "serverId": "srv-unl-c259247d",
+      "action": "POWER_START",
+      "details": "User executed start command on Unlimited Cloud Master"
+    },
+    {
+      "id": "act-1793097091189-968",
+      "createdAt": "2026-10-27T10:31:31.189Z",
+      "userId": "usr-admin-super",
+      "serverId": "srv-unl-c259247d",
+      "action": "UNLIMITED_SERVER_CREATED",
+      "details": "Admin created unlimited GB server Unlimited Cloud Master for rizramadhan975@gmail.com (Masa Aktif: unlimited)"
+    },
+    {
+      "id": "act-1793013550566-846",
+      "createdAt": "2026-10-26T11:19:10.566Z",
+      "userId": "usr-admin-super",
+      "serverId": "srv-unl-cd00df84",
+      "action": "UNLIMITED_SERVER_CREATED",
+      "details": "Admin created unlimited GB server Unlimited Cloud Master for rizramadhan975@gmail.com (Masa Aktif: unlimited)"
+    },
+    {
+      "id": "act-1793013334623-356",
+      "createdAt": "2026-10-26T11:15:34.623Z",
+      "userId": "usr-admin-super",
+      "serverId": "srv-unl-5ee1b0ea",
+      "action": "UNLIMITED_SERVER_CREATED",
+      "details": "Admin created unlimited GB server Unlimited Cloud Master for rizramadhan975@gmail.com (Masa Aktif: unlimited)"
+    },
+    {
+      "id": "act-1792936394839-90",
+      "createdAt": "2026-10-25T13:53:14.839Z",
+      "userId": "usr-admin-super",
+      "serverId": "srv-unl-e1e40b48",
+      "action": "UNLIMITED_SERVER_CREATED",
+      "details": "Admin created unlimited GB server Unlimited Cloud Master for rizramadhan975@gmail.com (Masa Aktif: unlimited)"
+    },
+    {
+      "id": "act-1792936076648-813",
+      "createdAt": "2026-10-25T13:47:56.648Z",
+      "userId": "usr-admin-super",
+      "serverId": "srv-unl-2829d311",
+      "action": "POWER_RESTART",
+      "details": "User executed restart command on Unlimited Cloud Master"
+    },
+    {
+      "id": "act-1792935882469-694",
+      "createdAt": "2026-10-25T13:44:42.469Z",
+      "userId": "usr-admin-super",
+      "serverId": "srv-unl-2829d311",
+      "action": "UNLIMITED_SERVER_CREATED",
+      "details": "Admin created unlimited GB server Unlimited Cloud Master for rizramadhan975@gmail.com (Masa Aktif: unlimited)"
+    },
+    {
+      "id": "act-1792932433975-93",
+      "createdAt": "2026-10-25T12:47:13.975Z",
+      "userId": "usr-admin-super",
+      "serverId": "srv-unl-1a825fe2",
+      "action": "UNLIMITED_SERVER_CREATED",
+      "details": "Admin created unlimited GB server Unlimited Cloud Master for rizramadhan975@gmail.com (Masa Aktif: unlimited)"
+    },
+    {
+      "id": "act-1792932430387-183",
+      "createdAt": "2026-10-25T12:47:10.387Z",
+      "userId": "usr-admin-super",
+      "serverId": "srv-unl-a05f3fe4",
+      "action": "UNLIMITED_SERVER_CREATED",
+      "details": "Admin created unlimited GB server Unlimited Cloud Master for rizramadhan975@gmail.com (Masa Aktif: unlimited)"
+    },
+    {
+      "id": "act-1792083497868-908",
+      "createdAt": "2026-10-15T16:58:17.868Z",
+      "userId": "usr-admin-super",
+      "serverId": "srv-unl-edc56281",
+      "action": "UNLIMITED_SERVER_CREATED",
+      "details": "Admin created unlimited GB server Enterprise Unlimited Master (Unlimited VIP) for rizramadhan975@gmail.com"
+    },
+    {
+      "id": "act-1792081741828-2",
+      "createdAt": "2026-10-15T16:29:01.828Z",
+      "userId": "usr-88648d000a9c",
+      "serverId": "srv-08b8e0df18",
+      "action": "SERVER_PROVISIONED",
+      "details": "Server Node.js 20 LTS Instance (f9b230da-58ce-453d-8d59-ec4fda2da311) automatically provisioned from order ORD-MV9R70S6-E1DF."
+    },
+    {
+      "id": "act-init-001",
+      "action": "SYSTEM_BOOT",
+      "details": "AetherPanel database initialized with default seeds.",
+      "createdAt": "2026-10-15T16:21:41.450Z"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "node-jkt-01",
+      "name": "Jakarta 01 (Cyber Building)",
+      "code": "JKT-01",
+      "country": "Indonesia",
+      "flag": "🇮🇩",
+      "ip": "103.147.154.21",
+      "port": 8080,
+      "isOnline": true,
+      "totalRamMb": 65536,
+      "usedRamMb": 18432,
+      "totalDiskGb": 2000,
+      "usedDiskGb": 610,
+      "pingMs": 8,
+      "daemonToken": "tok_daemon_jkt-01_sec_2d6ec440c87641fb"
+    },
+    {
+      "id": "node-sg-01",
+      "name": "Singapore 01 (Equinix SG1)",
+      "code": "SGP-01",
+      "country": "Singapore",
+      "flag": "🇸🇬",
+      "ip": "139.180.201.45",
+      "port": 8080,
+      "isOnline": true,
+      "totalRamMb": 32768,
+      "usedRamMb": 12288,
+      "totalDiskGb": 1000,
+      "usedDiskGb": 340,
+      "pingMs": 19,
+      "daemonToken": "tok_daemon_sgp-01_sec_c2aad10f681bec93"
+    },
+    {
+      "id": "node-tyo-01",
+      "name": "Tokyo 01 (TYO Datacenter)",
+      "code": "TYO-01",
+      "country": "Japan",
+      "flag": "🇯🇵",
+      "ip": "172.105.228.89",
+      "port": 8080,
+      "isOnline": true,
+      "totalRamMb": 32768,
+      "usedRamMb": 8192,
+      "totalDiskGb": 1000,
+      "usedDiskGb": 220,
+      "pingMs": 64,
+      "daemonToken": "tok_daemon_tyo-01_sec_adbe53380f181f99"
+    }
+  ],
+  "eggs": [
+    {
+      "id": "nodejs",
+      "name": "Node.js 20 LTS",
+      "category": "Runtime",
+      "dockerImage": "node:20-alpine",
+      "defaultStartup": "npm start",
+      "entryFile": "index.js",
+      "installScript": "npm install --production",
+      "stopCommand": "^C",
+      "description": "High-performance runtime for Express, Fastify, NestJS, and general Node.js backend services.",
+      "envVars": {
+        "NODE_ENV": {
+          "label": "Node Environment",
+          "default": "production",
+          "required": true
+        },
+        "PORT": {
+          "label": "Application Port",
+          "default": "{{SERVER_PORT}}",
+          "required": true
+        },
+        "ENTRY_FILE": {
+          "label": "Entry Script",
+          "default": "index.js",
+          "required": true
+        }
+      }
+    },
+    {
+      "id": "python",
+      "name": "Python 3.12",
+      "category": "Runtime",
+      "dockerImage": "python:3.12-slim",
+      "defaultStartup": "python -u {{ENTRY_FILE}}",
+      "entryFile": "main.py",
+      "installScript": "pip install -r requirements.txt",
+      "stopCommand": "^C",
+      "description": "Clean Python 3 environment for FastAPI, Flask, automation workers, and web scraping scripts.",
+      "envVars": {
+        "PYTHONUNBUFFERED": {
+          "label": "Unbuffered Output",
+          "default": "1",
+          "required": true
+        },
+        "PORT": {
+          "label": "Server Port",
+          "default": "{{SERVER_PORT}}",
+          "required": false
+        },
+        "ENTRY_FILE": {
+          "label": "Main Script",
+          "default": "main.py",
+          "required": true
+        }
+      }
+    },
+    {
+      "id": "discord-node",
+      "name": "Discord Bot (Node.js)",
+      "category": "Bots",
+      "dockerImage": "node:20-alpine",
+      "defaultStartup": "node {{ENTRY_FILE}}",
+      "entryFile": "bot.js",
+      "installScript": "npm install discord.js dotenv",
+      "stopCommand": "^C",
+      "description": "Preconfigured for discord.js v14 bots with automatic reconnect and keep-alive handling.",
+      "envVars": {
+        "DISCORD_TOKEN": {
+          "label": "Bot Token",
+          "default": "YOUR_BOT_TOKEN_HERE",
+          "required": true
+        },
+        "CLIENT_ID": {
+          "label": "Client Application ID",
+          "default": "",
+          "required": false
+        },
+        "ENTRY_FILE": {
+          "label": "Bot Entry File",
+          "default": "bot.js",
+          "required": true
+        }
+      }
+    },
+    {
+      "id": "discord-python",
+      "name": "Discord Bot (discord.py)",
+      "category": "Bots",
+      "dockerImage": "python:3.12-slim",
+      "defaultStartup": "python -u {{ENTRY_FILE}}",
+      "entryFile": "bot.py",
+      "installScript": "pip install discord.py python-dotenv",
+      "stopCommand": "^C",
+      "description": "Python bot template using discord.py with command cogs and async loop support.",
+      "envVars": {
+        "DISCORD_TOKEN": {
+          "label": "Bot Token",
+          "default": "YOUR_BOT_TOKEN_HERE",
+          "required": true
+        },
+        "COMMAND_PREFIX": {
+          "label": "Prefix",
+          "default": "!",
+          "required": true
+        },
+        "ENTRY_FILE": {
+          "label": "Bot Entry File",
+          "default": "bot.py",
+          "required": true
+        }
+      }
+    },
+    {
+      "id": "static-nginx",
+      "name": "Static Site (Nginx)",
+      "category": "Web",
+      "dockerImage": "nginx:alpine",
+      "defaultStartup": "nginx -g \"daemon off;\"",
+      "entryFile": "index.html",
+      "installScript": "echo \"Nginx static files initialized\"",
+      "stopCommand": "nginx -s quit",
+      "description": "Ultra-fast static web server for HTML/CSS/JS, Vite builds, and React/Vue/Svelte static exports.",
+      "envVars": {
+        "PORT": {
+          "label": "HTTP Port",
+          "default": "{{SERVER_PORT}}",
+          "required": true
+        }
+      }
+    },
+    {
+      "id": "php-nginx",
+      "name": "PHP 8.2 + Nginx",
+      "category": "Web",
+      "dockerImage": "php:8.2-fpm-alpine",
+      "defaultStartup": "php-fpm -D && nginx -g \"daemon off;\"",
+      "entryFile": "index.php",
+      "installScript": "composer install --no-dev --optimize-autoloader || echo \"Ready\"",
+      "stopCommand": "killall php-fpm && nginx -s quit",
+      "description": "Full PHP-FPM and Nginx stack for Laravel, CodeIgniter, WordPress, and custom PHP APIs.",
+      "envVars": {
+        "PORT": {
+          "label": "Web Port",
+          "default": "{{SERVER_PORT}}",
+          "required": true
+        },
+        "PHP_MEMORY_LIMIT": {
+          "label": "Memory Limit",
+          "default": "256M",
+          "required": true
+        }
+      }
+    },
+    {
+      "id": "minecraft-java",
+      "name": "Minecraft Java Edition",
+      "category": "Gaming",
+      "dockerImage": "eclipse-temurin:21-jre-alpine",
+      "defaultStartup": "java -Xms128M -Xmx{{RAM_MAX_MB}}M -jar server.jar nogui",
+      "entryFile": "server.jar",
+      "installScript": "echo \"eula=true\" > eula.txt",
+      "stopCommand": "stop",
+      "description": "Paper / Spigot / Vanilla Minecraft server with optimized JVM flags and auto EULA acceptance.",
+      "envVars": {
+        "SERVER_PORT": {
+          "label": "Server Port",
+          "default": "{{SERVER_PORT}}",
+          "required": true
+        },
+        "EULA": {
+          "label": "Accept EULA",
+          "default": "true",
+          "required": true
+        },
+        "MAX_PLAYERS": {
+          "label": "Max Players",
+          "default": "20",
+          "required": true
+        }
+      }
+    },
+    {
+      "id": "custom-docker",
+      "name": "Custom Docker Container",
+      "category": "Advanced",
+      "dockerImage": "alpine:latest",
+      "defaultStartup": "sh run.sh",
+      "entryFile": "run.sh",
+      "installScript": "chmod +x run.sh",
+      "stopCommand": "^C",
+      "description": "Deploy any custom Docker image, Golang binary, Rust microservice, or custom bash automation.",
+      "envVars": {
+        "PORT": {
+          "label": "Service Port",
+          "default": "{{SERVER_PORT}}",
+          "required": false
+        },
+        "CUSTOM_COMMAND": {
+          "label": "Launch Command",
+          "default": "sh run.sh",
+          "required": true
+        }
+      }
+    }
+  ],
+  "pricingRules": {
+    "baseMonthlyFee": 4000,
+    "pricePerGbRam": 10000,
+    "pricePerCpuCore": 8000,
+    "pricePerGbDisk": 400,
+    "pricePerBackupSlot": 2000,
+    "pricePerExtraPort": 1500,
+    "pricePerDatabase": 3000,
+    "durationDiscounts": {
+      "1": 0,
+      "3": 0.05,
+      "6": 0.1,
+      "12": 0.15
+    },
+    "minAmount": 1000,
+    "maxAmount": 5000000
+  },
+  "coupons": [
+    {
+      "id": "cpn-launch20",
+      "code": "LAUNCH20",
+      "discountPercent": 20,
+      "discountFixed": null,
+      "maxDiscount": 25000,
+      "maxUsage": 100,
+      "usedCount": 0,
+      "isActive": true
+    },
+    {
+      "id": "cpn-hemat50",
+      "code": "HEMAT50",
+      "discountPercent": null,
+      "discountFixed": 5000,
+      "maxDiscount": null,
+      "maxUsage": 100,
+      "usedCount": 0,
+      "isActive": true
+    },
+    {
+      "id": "cpn-dev10",
+      "code": "DEV10",
+      "discountPercent": 10,
+      "discountFixed": null,
+      "maxDiscount": 15000,
+      "maxUsage": 100,
+      "usedCount": 0,
+      "isActive": true
+    },
+    {
+      "id": "cpn-mv9s8x5u",
+      "code": "RAMADHANUNLIMITED",
+      "discountPercent": 50,
+      "discountFixed": null,
+      "maxDiscount": 50000,
+      "maxUsage": 500,
+      "usedCount": 0,
+      "isActive": true,
+      "createdAt": "2026-10-15T16:58:23.586Z"
+    }
+  ],
+  "routerConfig": {
+    "id": "default",
+    "endpoint": "https://api.9router.com",
+    "apiKey": "",
+    "mode": "auto",
+    "isEnabled": true
+  },
+  "paymentConfig": {
+    "id": "buatqris",
+    "provider": "buatqris",
+    "accountId": "ACC-DEMO-9912",
+    "secretToken": "sec_tok_live_demo_9823184",
+    "signingSecret": "sign_sec_demo_hash_98231",
+    "mode": "mock",
+    "defaultMethod": "qris_one",
+    "feeBy": "buyer",
+    "minAmount": 1000,
+    "maxAmount": 5000000
+  },
+  "settings": {
+    "registrationOpen": "false",
+    "gracePeriodDays": "3",
+    "brandName": "Aether Cloud Hosting",
+    "smtpHost": "smtp.mailgun.org",
+    "smtpPort": "587"
+  },
+  "notifications": [
+    {
+      "id": "notif-0858c348236f",
+      "userId": "usr-admin-001",
+      "isAdminOnly": false,
+      "title": "Sistem Aktif",
+      "message": "Panel notifikasi dan backup otomatis berhasil diintegrasikan.",
+      "category": "system",
+      "severity": "success",
+      "metadata": {},
+      "isRead": false,
+      "createdAt": "2026-10-29T21:53:18.078Z"
+    },
+    {
+      "id": "notif-2339f178f4dc",
+      "userId": "usr-admin-super",
+      "isAdminOnly": false,
+      "title": "Sistem Aktif",
+      "message": "Panel notifikasi dan backup otomatis berhasil diintegrasikan.",
+      "category": "system",
+      "severity": "success",
+      "metadata": {},
+      "isRead": false,
+      "createdAt": "2026-10-29T21:53:18.080Z"
+    },
+    {
+      "id": "notif-18f3689846d6",
+      "userId": "usr-demo-002",
+      "isAdminOnly": false,
+      "title": "Sistem Aktif",
+      "message": "Panel notifikasi dan backup otomatis berhasil diintegrasikan.",
+      "category": "system",
+      "severity": "success",
+      "metadata": {},
+      "isRead": false,
+      "createdAt": "2026-10-29T21:53:18.129Z"
+    },
+    {
+      "id": "notif-3ae9b49a9618",
+      "userId": "usr-88648d000a9c",
+      "isAdminOnly": false,
+      "title": "Sistem Aktif",
+      "message": "Panel notifikasi dan backup otomatis berhasil diintegrasikan.",
+      "category": "system",
+      "severity": "success",
+      "metadata": {},
+      "isRead": false,
+      "createdAt": "2026-10-29T21:53:18.132Z"
+    },
+    {
+      "id": "notif-7bf4ff3b029d",
+      "userId": "usr-admin-super",
+      "isAdminOnly": false,
+      "title": "Backup Manual Berhasil: Unlimited Cloud Master",
+      "message": "Cadangan server \"Unlimited Cloud Master\" berhasil dibuat (System_Backup_Verification).",
+      "category": "backup",
+      "severity": "success",
+      "link": "/servers/srv-unl-1a825fe2?tab=backups",
+      "metadata": {},
+      "isRead": false,
+      "createdAt": "2026-10-29T21:54:41.250Z"
+    },
+    {
+      "id": "notif-0f291847517c",
+      "userId": "usr-admin-super",
+      "isAdminOnly": false,
+      "title": "Server Berhasil Dipulihkan: Unlimited Cloud Master",
+      "message": "Server \"Unlimited Cloud Master\" telah berhasil dipulihkan dari cadangan \"System_Backup_Verification\".",
+      "category": "backup",
+      "severity": "info",
+      "link": "/servers/srv-unl-1a825fe2?tab=backups",
+      "metadata": {},
+      "isRead": false,
+      "createdAt": "2026-10-29T21:54:53.143Z"
+    },
+    {
+      "id": "notif-cd7e245a3744",
+      "userId": "usr-admin-super",
+      "isAdminOnly": false,
+      "title": "Backup Otomatis Berhasil: Unlimited Cloud Master",
+      "message": "Cadangan otomatis untuk server \"Unlimited Cloud Master\" telah berhasil dibuat.\nUkuran Arsip: 161 B\nSlot Terpakai: 2/50",
+      "category": "backup",
+      "severity": "success",
+      "link": "/servers/srv-unl-1a825fe2?tab=backups",
+      "metadata": {
+        "serverId": "srv-unl-1a825fe2",
+        "backupId": "bck-auto-a459250599",
+        "sizeBytes": 161
+      },
+      "isRead": false,
+      "createdAt": "2026-11-20T03:00:09.102Z",
+      "emailSent": true
+    },
+    {
+      "id": "notif-6c4b0401c308",
+      "userId": "usr-admin-super",
+      "isAdminOnly": false,
+      "title": "Backup Otomatis Berhasil: Unlimited Cloud Master",
+      "message": "Cadangan otomatis untuk server \"Unlimited Cloud Master\" telah berhasil dibuat.\nUkuran Arsip: 161 B\nSlot Terpakai: 3/50",
+      "category": "backup",
+      "severity": "success",
+      "link": "/servers/srv-unl-1a825fe2?tab=backups",
+      "metadata": {
+        "serverId": "srv-unl-1a825fe2",
+        "backupId": "bck-auto-3099d39236",
+        "sizeBytes": 161
+      },
+      "isRead": false,
+      "createdAt": "2026-11-21T03:00:36.424Z",
+      "emailSent": true
+    }
+  ]
+}

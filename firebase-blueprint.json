@@ -1,0 +1,99 @@
+{
+  "entities": {
+    "user": {
+      "title": "User",
+      "description": "User profile document stored in Firestore",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["USER", "ADMIN"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["email", "role"]
+    },
+    "pricingConfig": {
+      "title": "PricingConfig",
+      "description": "Global hosting pricing configuration managed by admin",
+      "type": "object",
+      "properties": {
+        "baseMonthlyFee": { "type": "number" },
+        "pricePerGbRam": { "type": "number" },
+        "pricePerCpuCore": { "type": "number" },
+        "pricePerGbDisk": { "type": "number" },
+        "minAmount": { "type": "number" },
+        "maxAmount": { "type": "number" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["baseMonthlyFee", "pricePerGbRam"]
+    },
+    "voucher": {
+      "title": "Voucher",
+      "description": "Discount voucher or promo code created by admin",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string", "maxLength": 32 },
+        "discountPercent": { "type": "number" },
+        "discountFixed": { "type": "number" },
+        "maxDiscount": { "type": "number" },
+        "maxUsage": { "type": "number" },
+        "usedCount": { "type": "number" },
+        "isActive": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["code", "isActive"]
+    },
+    "serverConfig": {
+      "title": "ServerConfig",
+      "description": "Hosting server instance configuration including unlimited GB panels",
+      "type": "object",
+      "properties": {
+        "serverId": { "type": "string" },
+        "name": { "type": "string" },
+        "eggId": { "type": "string" },
+        "nodeId": { "type": "string" },
+        "ramMb": { "type": "number" },
+        "diskGb": { "type": "number" },
+        "isUnlimited": { "type": "boolean" },
+        "ownerEmail": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["serverId", "name", "ownerEmail"]
+    },
+    "admin": {
+      "title": "Admin",
+      "description": "Designated administrator record for access control",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "addedAt": { "type": "string" }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "user",
+      "description": "User profile collection mapped to Firebase Auth UID"
+    },
+    "/pricing/global": {
+      "schema": "pricingConfig",
+      "description": "Global pricing rules document configurable by admin"
+    },
+    "/vouchers/{voucherId}": {
+      "schema": "voucher",
+      "description": "Collection of promotional discount vouchers"
+    },
+    "/servers/{serverId}": {
+      "schema": "serverConfig",
+      "description": "Collection of provisioned hosting servers including unlimited GB instances"
+    },
+    "/admins/{adminId}": {
+      "schema": "admin",
+      "description": "Trusted admin collection verified by security rules"
+    }
+  }
+}

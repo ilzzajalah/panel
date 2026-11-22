@@ -1,0 +1,22 @@
+[Unit]
+Description=AetherPanel 24/7 Hosting Daemon
+Documentation=https://github.com/aetherpanel
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/var/www/aetherpanel
+Environment=NODE_ENV=production
+Environment=PORT=3000
+ExecStart=/usr/bin/npm run start
+Restart=always
+RestartSec=5s
+StartLimitIntervalSec=60s
+StartLimitBurst=5
+LimitNOFILE=65536
+KillMode=mixed
+TimeoutStopSec=15s
+
+[Install]
+WantedBy=multi-user.target

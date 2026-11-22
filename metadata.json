@@ -1,0 +1,6 @@
+{
+  "name": "AetherPanel - Cloud Hosting & Server Manager",
+  "description": "Modern hosting panel inspired by Pterodactyl with automated BuatQris QRIS provisioning, live console, file manager, and container management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

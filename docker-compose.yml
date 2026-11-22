@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: aether_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: aetherpanel
+      POSTGRES_USER: aether
+      POSTGRES_PASSWORD: aether_secure_password_2026
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - aether_internal
+
+  # Redis for Queue & PubSub
+  redis:
+    image: redis:7-alpine
+    container_name: aether_redis
+    restart: always
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - aether_internal
+
+  # Web Panel + API Server
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: aether_web
+    restart: always
+    environment:
+      PORT: 3000
+      DATABASE_URL: postgresql://aether:aether_secure_password_2026@postgres:5432/aetherpanel?schema=public
+      REDIS_URL: redis://redis:6379
+      APP_URL: ${APP_URL:-https://panel.yourdomain.com}
+      JWT_SECRET: ${JWT_SECRET:-aether_jwt_secret_change_me_in_production}
+      BUATQRIS_ACCOUNT_ID: ${BUATQRIS_ACCOUNT_ID}
+      BUATQRIS_SECRET_TOKEN: ${BUATQRIS_SECRET_TOKEN}
+      BUATQRIS_SIGNING_SECRET: ${BUATQRIS_SIGNING_SECRET}
+      BUATQRIS_MODE: ${BUATQRIS_MODE:-mock}
+    ports:
+      - "3000:3000"
+    volumes:
+      - panel_data:/app/data
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - aether_internal
+      - aether_public
+
+  # Daemon Node Agent (Runs on each host node managing Docker containers)
+  daemon:
+    build:
+      context: .
+      dockerfile: Dockerfile.daemon
+    container_name: aether_daemon
+    restart: always
+    environment:
+      DAEMON_PORT: 8080
+      DAEMON_TOKEN: ${DAEMON_TOKEN:-aether_daemon_token_node1}
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/panel/servers:/var/lib/panel/servers
+    networks:
+      - aether_internal
+
+volumes:
+  postgres_data:
+  redis_data:
+  panel_data:
+
+networks:
+  aether_internal:
+    internal: true
+  aether_public:
+    driver: bridge
